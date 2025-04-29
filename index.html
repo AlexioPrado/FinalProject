@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="screen">
+        <div id="taskform">
+            <form>
+                <h2>----------------------Task Creator----------------------</h2>
+                <label for="name">Task: </label>
+                <input type="input" id="name">
+                <label for="priority">Priority:</label>
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="mid">Mid</option>
+                    <option value="high">high</option>
+                </select>
+                <label for="important">Important</label>
+                <input type="checkbox" id="important">
+                <input type="submit" id="submit" value="Add Task">
+            </form>
+        </div>
+        <br>
+        <div id="taskmanager">
+            <table>
+                <!--Use <tr> for each task. Use <td> for info of the task-->
+            </table>
+        </div>  
+    </div>
+    
+</body>
+</html>
