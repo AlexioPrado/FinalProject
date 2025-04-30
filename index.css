@@ -12,4 +12,21 @@
 }
 #taskmanager{
     border-top: 1px solid gray;
+    width: 600px;
 }
+
+td{
+    width: 100px;
+    text-align: center;
+}
+
+#task,#Actions {
+    width: 200px;
+}
+
+
+.column {
+    background-color: lightblue;
+    border: 2px solid white;
+}
+

@@ -10,27 +10,36 @@
 <body>
     <div class="screen">
         <div id="taskform">
-            <form>
+            <form id="chicken">
                 <h2>----------------------Task Creator----------------------</h2>
                 <label for="name">Task: </label>
                 <input type="input" id="name">
                 <label for="priority">Priority:</label>
                 <select id="priority">
-                    <option value="low">Low</option>
-                    <option value="mid">Mid</option>
-                    <option value="high">high</option>
+                    <option value="Low">Low</option>
+                    <option value="Mid">Mid</option>
+                    <option value="High">high</option>
                 </select>
                 <label for="important">Important</label>
                 <input type="checkbox" id="important">
-                <input type="submit" id="submit" value="Add Task">
+                <button type="button" id="submit">Add Task</button>
             </form>
         </div>
         <br>
+        <center>
         <div id="taskmanager">
-            <table>
-                <!--Use <tr> for each task. Use <td> for info of the task-->
+            <center>
+            <table id="table">
+                <tr>
+                    <td class='column' id="task">Task</td>
+                    <td class='column'>Priority</td>
+                    <td class='column'>Date</td>
+                    <td class='column' id="Actions">Actions</td>
+                </tr>
             </table>
+            </center> 
         </div>  
+        </center>
     </div>
     
 </body>
