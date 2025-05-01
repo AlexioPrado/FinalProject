@@ -14,6 +14,15 @@ important.addEventListener('change', function() {
 })
 
 addTask.addEventListener('click', function() {
+    let taskName = document.getElementById('name');
+    if (!taskName.value){
+        alert('Task was not entered')
+    } else {
+        taskAdder()
+    }
+});
+
+function taskAdder() {
     //Create row tag
     let newTask = document.createElement('tr');
     newTask.id = tasks.length + 1;
@@ -28,6 +37,9 @@ addTask.addEventListener('click', function() {
     let day = document.createElement('td');
     let actions = document.createElement('td')
     let important = document.getElementById('important'); // Check box if its important
+
+    //naming newtask with task name
+    newTask.name = name;
 
     // Creating Done checkbox
     let done = document.createElement('input');
@@ -47,7 +59,7 @@ addTask.addEventListener('click', function() {
     const date = new Date();
 
     //Place values to day, name, and priority
-    day.textContent = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+    day.textContent = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
     name.textContent = document.getElementById('name').value;
     priority.textContent = document.getElementById('priority').value;
 
@@ -62,36 +74,56 @@ addTask.addEventListener('click', function() {
     document.getElementById('chicken').reset();
     importantMark = false;
 
-    //id,name,priority,isimportant,iscompleted,date
-    let taskObject = {
-                        id:newTask.id,
-                        name: name.textContent,
-                        priority: priority.textContent,
-                        date: day.textContent,
-                        isimportant: importantMark,
-                     }
-
-    tasks.push(taskObject)
-    const taskList = JSON.stringify(tasks) 
-    console.log(taskList)
-
     let line = false;
     done.addEventListener('change',function(){
         if(line){
             document.getElementById(done.id).style.textDecoration = 'none';
-            console.log('im here')
             line = false;
+            changecomp(false,done);
         }else {
             document.getElementById(done.id).style.textDecoration = 'line-through';
             line = true;
+            changecomp(true,done)
         }
-        console.log(done.id)
-        
     })
 
+    del.addEventListener('click', function() {
+        for (let i in tasks){
+            if (tasks[i].id === newTask.id & tasks[i].name === newTask.name.textContent){
+                let removing = tasks.indexOf(tasks[i]);
+                tasks.splice(i,1)
+            }
+        }
+        document.getElementById(newTask.id).remove();
+        consoling()
+    })
 
+    //id,name,priority,isimportant,iscompleted,date
+    let taskObject = {
+        id:newTask.id,
+        name: name.textContent,
+        priority: priority.textContent,
+        date: day.textContent,
+        isimportant: importantMark,
+        iscompleted: line,
+     }
 
+    tasks.push(taskObject)
+    consoling()
 
-});
+    function consoling(){
+        const taskList = JSON.stringify(tasks) 
+        console.log(taskList)
+    }
+    
+    function changecomp(value,task) {
+        for (let i in tasks){
+            if (tasks[i].id === task.id){
+                tasks[i].iscompleted = value;
+                consoling()
+            }
+        }
+    }
+};
 
 
