@@ -5,6 +5,7 @@ let addTask = document.getElementById('submit');
 let important = document.getElementById('important');
 let importantMark = false;
 
+//this updates the importantMark variable which indicates if the task is important or not
 important.addEventListener('change', function() {
     if (importantMark){
         importantMark = false;
@@ -13,6 +14,7 @@ important.addEventListener('change', function() {
     }
 })
 
+//first validates the name of the task
 addTask.addEventListener('click', function() {
     let taskName = document.getElementById('name');
     if (!taskName.value){
@@ -22,6 +24,7 @@ addTask.addEventListener('click', function() {
     }
 });
 
+//where all the mess begins
 function taskAdder() {
     //Create row tag
     let newTask = document.createElement('tr');
@@ -74,6 +77,7 @@ function taskAdder() {
     document.getElementById('chicken').reset();
     importantMark = false;
 
+    // this allows to strikethrough the task. It checks first if its already striked, then removes it. If not, places the strike.
     let line = false;
     done.addEventListener('change',function(){
         if(line){
@@ -87,10 +91,11 @@ function taskAdder() {
         }
     })
 
+    //the most disgusting code i have ever written, i dont want to look at it
+    //This deletes the task from the taskmanager tag and the tasks list
     del.addEventListener('click', function() {
         for (let i in tasks){
             if (tasks[i].id === newTask.id & tasks[i].name === newTask.name.textContent){
-                let removing = tasks.indexOf(tasks[i]);
                 tasks.splice(i,1)
             }
         }
@@ -108,14 +113,18 @@ function taskAdder() {
         iscompleted: line,
      }
 
+    
+    // pushing the new task in the tasks array
     tasks.push(taskObject)
     consoling()
 
+    //consoling the array
     function consoling(){
         const taskList = JSON.stringify(tasks) 
         console.log(taskList)
     }
     
+    // changing the value of completion in the array whenever a task is done
     function changecomp(value,task) {
         for (let i in tasks){
             if (tasks[i].id === task.id){
